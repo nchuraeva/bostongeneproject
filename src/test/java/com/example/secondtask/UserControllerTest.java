@@ -67,9 +67,9 @@ public class UserControllerTest {
 	@Before
 	public void init() {
 		mockMvc = webAppContextSetup(webApplicationContext).build();
-		User user1 = new User(USER_ONE_ID,"Nadia", "Churaeva","churaeva123@yandex.ru",24,"mkyong1A@" );
-		User user2 = new User(USER_TWO_ID,"Luis", "Petrova", "luis@yopmail.com", 23, "nkyong1A@");
-		User  user3 = new User(USER_THREE_ID ,"Max", "Ivanov","max@yopmail.com", 21, "mlyong1A@");
+		User user1 = new User(USER_ONE_ID,"Nadia", "Churaeva","churaeva123@yandex.ru","31.03.1993","mkyong1A@" );
+		User user2 = new User(USER_TWO_ID,"Luis", "Petrova", "luis@yopmail.com", "31.03.1983", "nkyong1A@");
+		User  user3 = new User(USER_THREE_ID ,"Max", "Ivanov","max@yopmail.com", "30.03.1993", "mlyong1A@");
 		userRepository.save(user1);
 		userRepository.save(user2);
 		userRepository.save(user3);
@@ -78,7 +78,7 @@ public class UserControllerTest {
 
 	@Test
 	public void createUser() throws Exception {
-		User user4 = new User(USER_FOUR_ID,"Maria", "Ivanova", "maria@yopmail.com", 20, "mjkong1A@") ;
+		User user4 = new User(USER_FOUR_ID,"Maria", "Ivanova", "maria@yopmail.com", "31.07.1993", "mjkong1A@") ;
 		mockMvc.perform(post("/user/add")
 				.contentType(CONTENT_TYPE)
 				.content(json(user4)))
@@ -110,8 +110,9 @@ public class UserControllerTest {
 
 	@Test
 	public void deleteUser() throws Exception{
-		mockMvc.perform(delete("/user/" + USER_ONE_ID))
-				.andExpect(status().isOk());
+		this.mockMvc.perform(delete("/user")
+				.param("email", "churaeva123@yandex.ru"))
+				.andExpect(status().isNotFound());
 	}
 
 

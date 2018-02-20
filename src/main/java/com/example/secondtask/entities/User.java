@@ -28,18 +28,18 @@ public class User {
     private String email;
 
     @NotNull
-    private Integer age;
+    private String birthday;
 
     @Size(min = 2)
     @NotNull
     private String password;
 
-    public User(Long id, String name, String lastName, String email, Integer age, String password) {
+    public User(Long id, String name, String lastName, String email, String  birthday, String password) {
         this.id = id;
         this.firstName = name;
         this.lastName = lastName;
         this.email = email;
-        this.age = age;
+        this.birthday = birthday;
         this.password = password;
     }
 
@@ -77,12 +77,12 @@ public class User {
         this.email = email;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPassword() {
@@ -100,7 +100,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", age=" + age +
+                ", birthday=" + birthday +
                 ", password='" + password + '\'' +
                 '}';
     }
