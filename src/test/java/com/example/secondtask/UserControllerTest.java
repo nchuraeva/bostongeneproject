@@ -112,7 +112,7 @@ public class UserControllerTest {
 	public void deleteUser() throws Exception{
 		this.mockMvc.perform(delete("/user")
 				.param("email", "churaeva123@yandex.ru"))
-				.andExpect(status().isNotFound());
+				.andExpect(status().isOk());
 	}
 
 

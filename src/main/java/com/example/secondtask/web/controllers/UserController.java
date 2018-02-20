@@ -55,9 +55,10 @@ public class UserController {
                 () -> new UserNotFoundException(email));
     }
 
-    @DeleteMapping(value = "/user/{email}")
+    @DeleteMapping(value = "/user")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable("email") String email){
+    public void deleteUser(@RequestParam Map<String,String> request){
+        String email = request.get("email");
         this.validateUser(email);
         User user = this.userService.findUserByEmail(email).get();
         userService.deleteUser(user.getId());
